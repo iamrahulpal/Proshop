@@ -4,11 +4,11 @@ import { Card } from "react-bootstrap";
 const Product = ({ product }) => {
   return (
     <Card className="my-3 p-3 rounded">
-      <a herf={`/product/${product._id}`}>
+      <a href={`/product/${product._id}`}>
         <Card.Img src={product.image} variant="top" />
       </a>
       <Card.Body>
-        <a herf={`/product/${product._id}`}>
+        <a href={`/product/${product._id}`}>
           <Card.Title as="div">
             <strong>{product.name}</strong>
           </Card.Title>
