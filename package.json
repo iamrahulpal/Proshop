@@ -1,0 +1,22 @@
+{
+  "name": "full-stack",
+  "version": "1.0.0",
+  "description": "MERN ecommerce app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisrahulpal/Proshop.git"
+  },
+  "author": "Rahul Pal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thisisrahulpal/Proshop/issues"
+  },
+  "homepage": "https://github.com/thisisrahulpal/Proshop#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
