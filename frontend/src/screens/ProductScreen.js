@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Rating from "../components/Rating";
-import products from "../products";
-import Product from "../components/Product";
+import axios from "axios";
 
-function ProductScreen() {
-  const match = useParams();
-  const product = products.find((p) => p._id === match.id);
+const ProductScreen = ({ match }) => {
+  const [product, setProduct] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    // when upper command executed instantlly this sectin gets fire off whatever in it
+    const fetchProduct = async () => {
+      //created a asynchronous funtion
+      const { data } = await axios.get(
+        `/api/products/${encodeURIComponent(id)}`
+      ); // await(wait) till get req of products and the provide res.data i.e. {data}
+      setProduct(data); // since useState array is empty thats why on webstie it show only one line latets products now we are providing the data
+    };
+
+    fetchProduct(); //calling that asynchronous function
+  }, []); //that empty array is used on in case of failure of a fucntion
+
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
@@ -62,6 +75,6 @@ function ProductScreen() {
       </Row>
     </>
   );
-}
+};
 
 export default ProductScreen;
