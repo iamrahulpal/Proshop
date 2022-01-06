@@ -19,7 +19,7 @@ const ProductScreen = ({ match }) => {
     };
 
     fetchProduct(); //calling that asynchronous function
-  }, []); //that empty array is used on in case of failure of a fucntion
+  }, [id]); //that empty array is used on in case of failure of a fucntion
 
   return (
     <>
