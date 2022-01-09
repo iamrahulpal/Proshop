@@ -2,8 +2,8 @@ import express from "express";
 import dotenv from "dotenv"; //it protects the sensitive infromation to be exposed
 import colors from "colors";
 import connectDB from "./config/db.js";
-import products from "./data/products.js";
-
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import productRoutes from "./routes/productRoutes.js";
 dotenv.config();
 
 connectDB();
@@ -15,16 +15,11 @@ app.get("/", (req, res) => {
   res.send("API is running.."); //(takind res object) sending msg to client side
 });
 
-app.get("/api/products", (req, res) => {
-  //(Created Route)if we get request to '/api/product' than run the funtion product.js file that takes req and res object
-  res.json(products); //(takind res.json object) sending products to client side
-});
+app.use("/api/products", productRoutes); //we were fetching from but since we migrate the element calling from her eto productRoutes so we here we just redirecting the call
 
-app.get("/api/products/:id", (req, res) => {
-  //(Created Route)if we get request to '/api/product' than run the funtion product.js file that takes req and res object
-  const product = products.find((p) => p._id === req.params.id); //comparing req id to product id and pushing the single product
-  res.json(product); //(takind res.json object) sending single products to client side
-});
+app.use(notFound);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
